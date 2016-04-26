@@ -5,7 +5,7 @@ Carnegie Hall Archives maintains a series of small, portable scripts for matchin
 
 These scripts have benefitted immensely from a wide community of archiving, preservation, and programming experts who share their code and troubleshooting techniques online. We are excited by the opportunity to participate in this community and have our methods improve through open collaboration and mutual exchange.
 
-For more information on Carnegie Hall's [Performance History Search](http://www.carnegiehall.org/PerformanceHistorySearch/#!), refer to **[linked-data](https://github.com/CarnegieHall/linked-data#performance-history-database-opas)**.
+For more information on Carnegie Hall's performance history database and publicly-accessible [Performance History Search](http://www.carnegiehall.org/PerformanceHistorySearch/#!), please see our  **[linked-data](https://github.com/CarnegieHall/linked-data#performance-history-database-opas)** overview.
 
 ##CONTENTS
 
