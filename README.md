@@ -10,8 +10,8 @@ These scripts have benefitted immensely from a wide community of archiving, pres
 | Script Name         | Purpose           |
 | ------------- |-------------|
 | **[idMatching_flyers.py](https://github.com/CarnegieHall/metadata-matching/blob/master/idMatching_flyers.py)**     | Matches performance database IDs/information to filenames based on filenaming convention and matching logic (for Archives' flyer collections) |
-|**idMatching_programs.py**      | Matches performance database IDs/information to filenames based on filenaming convention and matching logic (for Archives' concert program collections) |
-|**idMatching_video.py** | Matches performance database IDs/information to filenames based on filenaming convention and matching logic (for Archives' Robert Shaw Workshop and other video collections) |
+|**[idMatching_programs.py](https://github.com/CarnegieHall/metadata-matching/blob/master/idMatching_programs.py)**      | Matches performance database IDs/information to filenames based on filenaming convention and matching logic (for Archives' concert program collections) |
+|**[idMatching_video.py](https://github.com/CarnegieHall/metadata-matching/blob/master/idMatching_video.py)** | Matches performance database IDs/information to filenames based on filenaming convention and matching logic (for Archives' Robert Shaw Workshop and other video collections) |
 
 
 ##USAGE AND LICENSE
