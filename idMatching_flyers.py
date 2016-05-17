@@ -101,7 +101,7 @@ for key in fileDict:
         fileDict[key]['Title'] = flyerDict[file_flyerID]['Title']
 
 matchedFiles_name = ''.join([str(filePath_1), '/Central_OPASmatchedFiles_flyers_', volume, '.csv'])
-unmatchedIDs_name = ''.join(['../OPAS_Matching_ErrorOutput/unmatched_flyer_IDs_', '.txt'])
+unmatchedIDs_name = ''.join(['../OPAS_Matching_ErrorOutput/unmatched_flyer_IDs_', volume, '.txt'])
 
 # This writes the nested dictionary to a CSV file
 fields = ['OPAS ID', 'Source Unique ID', 'Collection', 'Title', 'Date 1 (YYYY/mm/dd)', 'Note', 'File Name']
