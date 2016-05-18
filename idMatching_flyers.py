@@ -44,6 +44,7 @@ for full_filePath in glob.glob(os.path.join(filePath_1, '*.tif')):
 with open(filePath_2, 'rU') as f:
     with open(filePath_3, encoding='utf-8') as g:
         flyerData = csv.reader(f, dialect='excel', delimiter=',')
+        next(flyerData, None)  # skip the headers
         titleData = csv.reader(g, dialect='excel', delimiter=',')
         for row in titleData:
             event_id = row[0]
@@ -56,7 +57,7 @@ with open(filePath_2, 'rU') as f:
 
         for row in flyerData:
             opas_id = row[0]
-            source_unique_id = row[1]
+            source_unique_id = row[1].strip()
             collection = row[2]
             if collection == 'Main Hall Flyers':
                 cortexFolder = 'CH_FLYERS_01'
