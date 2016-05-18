@@ -1,12 +1,13 @@
 # !/usr/local/bin/python3.4.2
 # ----Copyright (c) 2016 Carnegie Hall | The MIT License (MIT)----
-# ----For the full license terms, please visit https://github.com/CarnegieHall/quality-control/blob/master/LICENSE---- 
+# ----For the full license terms, please visit https://github.com/CarnegieHall/quality-control/blob/master/LICENSE----
 # run script with 5 arguments:
 # argument 0 is the script name
 # argument 1 is the path to the Isilon HDD volume containing the assets
 # argument 2 is the path to the metadata spreadsheet [~/Carnegie_Hall_Flyers.csv]
 # argument 3 is the path ~/OPAS_ID_exports/OPAS_flyers_IDs_titles.csv
-# argument 4 is the harddrive ID/volume that will be added to the output filename (E.g. ABH_20150901)
+# argument 4 is the path to the folder you want to save your unmatched performance IDs to
+# argument 5 is the harddrive ID/volume that will be added to the output filename (E.g. ABH_20150901)
 
 import csv
 import glob
@@ -19,6 +20,7 @@ import sys
 filePath_1 = str(sys.argv[1])
 filePath_2 = str(sys.argv[2])
 filePath_3 = str(sys.argv[3])
+filePath_4 = str(sys.argv[4])
 
 fileDict = {}
 flyerDict = {}
@@ -51,7 +53,7 @@ with open(filePath_2, 'rU') as f:
                 text = '[No title available]'
 
             titleDict[titleMatch_id] = text
-            
+
         for row in flyerData:
             opas_id = row[0]
             source_unique_id = row[1]
@@ -101,7 +103,7 @@ for key in fileDict:
         fileDict[key]['Title'] = flyerDict[file_flyerID]['Title']
 
 matchedFiles_name = ''.join([str(filePath_1), '/Central_OPASmatchedFiles_flyers_', volume, '.csv'])
-unmatchedIDs_name = ''.join(['../OPAS_Matching_ErrorOutput/unmatched_flyer_IDs_', volume, '.txt'])
+unmatchedIDs_name = ''.join([str(filePath_4), '/unmatched_flyer_IDs_', volume, '.txt'])
 
 # This writes the nested dictionary to a CSV file
 fields = ['OPAS ID', 'Source Unique ID', 'Collection', 'Title', 'Date 1 (YYYY/mm/dd)', 'Note', 'File Name']
