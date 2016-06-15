@@ -64,7 +64,7 @@ with open(filePath_2, 'rU') as f:
             event = row[3]
             entities = row[4]
             event_date = row[5]
-            event_year = row[5].split('/')[0]
+            event_year = row[6]
             note = row[7]
 
             try:
