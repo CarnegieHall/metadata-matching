@@ -12,6 +12,7 @@ For more information on Carnegie Hall's performance history database and publicl
 | Script Name         | Purpose           |
 | ------------- |-------------|
 | **[idMatching_flyers.py](https://github.com/CarnegieHall/metadata-matching/blob/master/idMatching_flyers.py)**     | Matches performance database IDs/information to filenames based on filenaming convention and matching logic (for Archives' flyer collections) |
+|**[idMatching_photos.py](https://github.com/CarnegieHall/metadata-matching/blob/master/idMatching_photos.py)** | Matches asset IDs to scrape updated filenames to create metadata spreadsheet (for an Archives' subset of public relations' photographs) |
 |**[idMatching_programs.py](https://github.com/CarnegieHall/metadata-matching/blob/master/idMatching_programs.py)**      | Matches performance database IDs/information to filenames based on filenaming convention and matching logic (for Archives' concert program collections) |
 |**[idMatching_video.py](https://github.com/CarnegieHall/metadata-matching/blob/master/idMatching_video.py)** | Matches performance database IDs/information to filenames based on filenaming convention and matching logic (for Archives' Robert Shaw Workshop and other video collections) |
 
