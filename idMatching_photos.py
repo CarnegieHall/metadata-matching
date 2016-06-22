@@ -1,6 +1,6 @@
 # !/usr/local/bin/python3.4.2
 # ----Copyright (c) 2016 Carnegie Hall | The MIT License (MIT)----
-# ----For the full license terms, please visit https://github.com/CarnegieHall/quality-control/blob/master/LICENSE---- 
+# ----For the full license terms, please visit https://github.com/CarnegieHall/quality-control/blob/master/LICENSE----
 # run script with 3 or more arguments:
 # argument 0 is the script name
 # argument 1 is the path to the metadata CSV
@@ -75,16 +75,16 @@ with open(filePath_1, encoding='latin-1') as f, open(filePath_2, encoding='utf-8
     	photoDict[str(asset_id)]['Material Type'] = content_type
     	photoDict[str(asset_id)]['Genre'] = genre
     	photoDict[str(asset_id)]['Asset ID'] = ''.join(['GETTY', asset_id])
-    	photoDict[str(asset_id)]['Filename'] = original_filename
+    	photoDict[str(asset_id)]['Legacy Filename'] = original_filename 
+    	photoDict[str(asset_id)]['Upload Filename'] = new_filename
 
 # Need workflow for batches of files
 outputPath = ''.join([str(filePath_3), '/Central_Getty', '.csv'])
 
-fields = ['Source', 'Title', 'Description', 'Copyright Notice', 'Participating Artists', 'Keywords', 'Event Date', 'Date (YYYY)', 'Date (free text)', 'Event Location', 'Confidentiality', 'Approval Status', 'Approval Conditions', 'Material Type', 'Genre', 'Asset ID', 'Filename']
+fields = ['Source', 'Title', 'Description', 'Copyright Notice', 'Participating Artists', 'Keywords', 'Event Date', 'Date (YYYY)', 'Date (free text)', 'Event Location', 'Confidentiality', 'Approval Status', 'Approval Conditions', 'Material Type', 'Genre', 'Asset ID', 'Legacy Filename', 'Upload Filename']
 with open(outputPath, 'w', newline='') as csvfile:
 	w = csv.DictWriter(csvfile, fields)
 	w.writeheader()
 	for k in photoDict:
 		w.writerow({field: photoDict[k].get(field) for field in fields})
 # print(json.dumps(photoDict, indent=4))
-
