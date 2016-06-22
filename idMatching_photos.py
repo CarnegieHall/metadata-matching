@@ -6,7 +6,7 @@
 # argument 1 is the path to the metadata CSV
 # argument 2 is the path to the simplified mapping between original filename (as uploaded) and filename on disk (with UTF-8!).
 # argument 3 is the path to you want to output the matched CSV to (folder to where files are.)
-# argument 4 is the Batch ID of the subset of photographs
+# argument 4 is the Batch ID of the subset of photographs (e.g. GB-001)
 
 import csv
 import os
