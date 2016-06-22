@@ -6,7 +6,7 @@
 # argument 1 is the path to the metadata CSV
 # argument 2 is the path to the simplified mapping between original filename (as uploaded) and filename on disk (with UTF-8!).
 # argument 3 is the path to you want to output the matched CSV to (folder to where files are.)
-# argument 4 is the ID of the subset of photographs
+# argument 4 is the Batch ID of the subset of photographs
 
 import csv
 import os
@@ -22,7 +22,7 @@ import unicodedata
 filePath_1 = str(sys.argv[1])
 filePath_2 = str(sys.argv[2])
 filePath_3 = str(sys.argv[3])
-volume = str(sys.argv[4])
+batch = str(sys.argv[4])
 
 
 fileDict = {}
@@ -81,7 +81,7 @@ with open(filePath_1, encoding='latin-1') as f, open(filePath_2, encoding='utf-8
     	photoDict[str(asset_id)]['Upload Filename'] = new_filename
 
 # Need workflow for batches of files
-outputPath = ''.join([str(filePath_3), '/Central_Getty_', volume, '.csv'])
+outputPath = ''.join([str(filePath_3), '/Central_Getty_', batch, '.csv'])
 
 fields = ['Source', 'Title', 'Description', 'Copyright Notice', 'Participating Artists', 'Keywords', 'Event Date', 'Date (YYYY)', 'Date (free text)', 'Event Location', 'Confidentiality', 'Approval Status', 'Approval Conditions', 'Material Type', 'Genre', 'Asset ID', 'Legacy Filename', 'Upload Filename']
 with open(outputPath, 'w', newline='') as csvfile:
