@@ -80,7 +80,7 @@ with open(filePath_2, 'rU') as f:
             try:
                 if opas_id:
                     opas_id = ''.join(['CONC', opas_id])
-                    title = ''.join([titleDict[opas_id]])
+                    title = ''.join([titleDict[opas_id], ', ', date_year])
                     # date_full = titleDict[opas_id]['Full Date']
                     # date_year = titleDict[opas_id]['Year']
                 else:
