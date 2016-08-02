@@ -52,8 +52,13 @@ with open(filePath_2, 'rU') as f:
             text = row[1]
             if not text:
                 text = '[No title available]'
+            # event_date = ????
+            # event_year = ????
 
             titleDict[titleMatch_id] = text
+            # titleDict[titleMatch_id]['Text'] = text
+            # # titleDict[titleMatch_id]['Full Date'] = event_date
+            # # titleDict[titleMatch_id]['Year'] = event_year
 
         for row in wcData:
             opas_id = row[0]
@@ -67,23 +72,29 @@ with open(filePath_2, 'rU') as f:
                 cortexFolder = 'CH_WindowCards_01'
             event = row[3]
             entities = row[4]
-            event_date = row[5]
-            event_year = row[6]
-            note = row[8]
+            date_full = row[5]
+            date_year = row[6]
+            event_date_freetext = row[7]
+            note = row[10]
 
             try:
-                if opas_id != '':
+                if opas_id:
                     opas_id = ''.join(['CONC', opas_id])
-                    if event_year:
-                        title = ''.join([titleDict[opas_id], ', ', event_year])
+                    title = ''.join([titleDict[opas_id]])
+                    # date_full = titleDict[opas_id]['Full Date']
+                    # date_year = titleDict[opas_id]['Year']
                 else:
                     opas_id = ''.join([cortexFolder])
                     title = event
+                    # date_full = ''
+                    # date_year = ''
 
                 wcDict[str(source_unique_id)] = {}
                 wcDict[str(source_unique_id)]['OPAS ID'] = opas_id
                 wcDict[str(source_unique_id)]['Collection'] = collection
-                wcDict[str(source_unique_id)]['Date 1 (YYYY/mm/dd)'] = event_date
+                wcDict[str(source_unique_id)]['Date (Free text)'] = event_date_freetext
+                wcDict[str(source_unique_id)]['Date (Year)'] = date_year
+                wcDict[str(source_unique_id)]['Date (Full)'] = date_full
                 wcDict[str(source_unique_id)]['Note'] = note
                 wcDict[str(source_unique_id)]['Title'] = title
 
@@ -103,7 +114,9 @@ for key in fileDict:
 
         fileDict[key]['OPAS ID'] = wcDict[file_wcID]['OPAS ID']
         fileDict[key]['Collection'] = wcDict[file_wcID]['Collection']
-        fileDict[key]['Date 1 (YYYY/mm/dd)'] = wcDict[file_wcID]['Date 1 (YYYY/mm/dd)']
+        fileDict[key]['Date (Full)'] = wcDict[file_wcID]['Date (Full)']
+        fileDict[key]['Date (Year)'] = wcDict[file_wcID]['Date (Year)']
+        fileDict[key]['Date (Free text)'] = wcDict[file_wcID]['Date (Free text)']
         fileDict[key]['Note'] = wcDict[file_wcID]['Note']
         fileDict[key]['Title'] = wcDict[file_wcID]['Title']
 
@@ -111,7 +124,7 @@ matchedFiles_name = ''.join([str(filePath_1), '/Central_OPASmatchedFiles_WindowC
 unmatchedIDs_name = ''.join([str(filePath_4), '/unmatched_WindowCards_IDs_', volume, '.txt'])
 
 # This writes the nested dictionary to a CSV file
-fields = ['OPAS ID', 'Source Unique ID', 'Collection', 'Title', 'Date 1 (YYYY/mm/dd)', 'Note', 'File Name']
+fields = ['OPAS ID', 'Source Unique ID', 'Collection', 'Title', 'Date (Full)', 'Date (Year)', 'Date (Free text)', 'Note', 'File Name']
 with open(matchedFiles_name, 'w', newline='') as csvfile:
     w = csv.DictWriter(csvfile, fields)
     w.writeheader()
