@@ -21,7 +21,6 @@ For more information on Carnegie Hall's performance history database and publicl
 ### USAGE GUIDELINES
 This code is provided “as is” and for you to use at your own risk. The information included in the contents of this repository is not necessarily complete. Carnegie Hall offers the scripts as-is and makes no representations or warranties of any kind.
 
-We plan to update the scripts regularly. We welcome any [Issues](https://github.com/CarnegieHall/metadata-matching/issues) and other feedback. Please let us know if you have found the contents of this repository useful!
 
 ### LICENSE
 _The MIT License (MIT)_
@@ -29,3 +28,18 @@ _The MIT License (MIT)_
 _Copyright (c) 2016 Carnegie Hall_
 
 All contents are released under the terms described in the [MIT License](https://github.com/CarnegieHall/metadata-matching/blob/master/LICENSE) included in this repository.
+
+
+### FEEDBACK
+
+We plan to update the scripts regularly. CH Archives welcomes your thoughts, questions, and recommendations on our evolving quality control strategies.
+
+### ADD OR COMMENT ON TOPICS
+
+Anyone is welcome to start a new topic ("issue") by selecting the `Issues` tab in GitHub and clicking the green [New Issue](https://github.com/CarnegieHall/metadata-matching/issues) button in the upper right.
+
+All existing issues, open and closed, may be reviewed or commented upon in the [Issues](https://github.com/CarnegieHall/metadata-matching/issues) section.
+
+### CONTACT THE ARCHIVES
+
+Email your thoughts to the Carnegie Hall Archives at **archives@carnegiehall.org** with the subject line ***Digital Collections: Metadata Matching***.
