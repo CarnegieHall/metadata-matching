@@ -30,7 +30,7 @@ _Copyright (c) 2016 Carnegie Hall_
 All contents are released under the terms described in the [MIT License](https://github.com/CarnegieHall/metadata-matching/blob/master/LICENSE) included in this repository.
 
 
-### FEEDBACK
+## FEEDBACK
 
 We plan to update the scripts regularly. CH Archives welcomes your thoughts, questions, and recommendations on our evolving quality control strategies.
 
