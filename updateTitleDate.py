@@ -39,7 +39,7 @@ with open(filePath1, 'rU') as f:
     	fileDict[str(cortexID)]['New Title'] = newTitle
     	fileDict[str(cortexID)]['Date'] = date
 
-outputPath = ''.join([str(filePath2), 'newProgramPageTitles.csv'])
+outputPath = ''.join([str(filePath2), '/newProgramPageTitles.csv'])
 
 fields = ['Cortex ID', 'New Title', 'Date']
 with open(outputPath, 'w', newline='')as csvfile:
