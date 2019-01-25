@@ -7,7 +7,6 @@
 
 import calendar
 import csv
-# from datetime import datetime, date, timedelta
 import os
 from os.path import join
 import sys
@@ -19,32 +18,34 @@ fileDict = {}
 
 with open(filePath1, 'rU') as f:
     cortexData = csv.reader(f, dialect='excel', delimiter=',', quotechar='"')
+    next(cortexData, None)  # skip the headers
     for row in cortexData:
     	cortexID = row[0]
     	filename = row[1]
     	parts = filename.split('_')
-    	year = row[8]
-    	day = row[9]
-    	month = row[10]
+    	year = row[2]
+    	day = row[3]
+    	month = row[4]
     	monthString = calendar.month_name[int(month)]
-    	folderTitle = row[12]
+    	folderTitle = row[5]
     	pageNumber = parts[len(parts)-1].split('.')[0].lstrip('0')
 
     	newTitle = '{folderTitle}, {monthString} {day}, {year}, program page {pageNumber}'.format(**locals())
     	# Separate out/format the date into year-month-day. If we want to change to slashes, just change the - to /
     	date = '{year}-{month}-{day}'.format(**locals())
 
-        fileDict[str(cortexID)] = {}
-        fileDict[str(cortexID)]['newTitle'] = newTitle
-        fileDict[str(cortexID)]['date'] = date
+    	fileDict[str(cortexID)] = {}
+    	fileDict[str(cortexID)]['Cortex ID'] = cortexID
+    	fileDict[str(cortexID)]['New Title'] = newTitle
+    	fileDict[str(cortexID)]['Date'] = date
 
+outputPath = ''.join([str(filePath2), 'newProgramPageTitles.csv'])
 
-matchedFiles_name = ''.join([str(filePath2), 'newProgramPageTitles.csv'])
+fields = ['Cortex ID', 'New Title', 'Date']
+with open(outputPath, 'w', newline='')as csvfile:
+    w = csv.DictWriter(csvfile, fields)
+    w.writeheader()
+    for k in fileDict:
+        w.writerow({field: fileDict[k].get(field) for field in fields})
 
-with open(matchedFiles_name, 'w', newline='')as f:
-    a = csv.writer(f, dialect='excel', delimiter=',')
-    a.writerow(["Cortex ID", "New Title", "Date"])
-    for key, value in fileDict.items():
-        a.writerow([key, value])
-
-print("Done!")
+print('Done!')
