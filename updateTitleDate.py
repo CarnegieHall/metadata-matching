@@ -32,7 +32,8 @@ with open(filePath1, 'rU') as f:
 
     	newTitle = '{folderTitle}, {monthString} {day}, {year}, program page {pageNumber}'.format(**locals())
     	# Separate out/format the date into year-month-day. If we want to change to slashes, just change the - to /
-    	date = '{year}-{month}-{day}'.format(**locals())
+##    	date = '{year}-{month}-{day}'.format(**locals())
+    	date = '{}-{}-{}'.format(year, month.zfill(2), day.zfill(2))
 
     	fileDict[str(cortexID)] = {}
     	fileDict[str(cortexID)]['Cortex ID'] = cortexID
