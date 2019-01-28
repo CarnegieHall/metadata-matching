@@ -28,11 +28,11 @@ with open(filePath1, 'rU') as f:
     	month = row[4]
     	monthString = calendar.month_name[int(month)]
     	folderTitle = row[5]
+    	contentType = row[6].rstrip('|')
     	pageNumber = parts[len(parts)-1].split('.')[0].lstrip('0')
 
-    	newTitle = '{folderTitle}, {monthString} {day}, {year}, program page {pageNumber}'.format(**locals())
+    	newTitle = '{folderTitle}, {monthString} {day}, {year}, {contentType} {pageNumber}'.format(**locals())
     	# Separate out/format the date into year-month-day. If we want to change to slashes, just change the - to /
-##    	date = '{year}-{month}-{day}'.format(**locals())
     	date = '{}-{}-{}'.format(year, month.zfill(2), day.zfill(2))
 
     	fileDict[str(cortexID)] = {}
