@@ -50,56 +50,61 @@ with open(filePath2, newline = '', encoding='utf-8') as h:
 			pass
 
 with open(filePath3, newline = '', encoding='utf-8') as j:
-	workPerfData = csv.reader(j, dialect='excel', delimiter=',', quotechar='"')
-	next(workPerfData, None)
-	idChecklist = []
-	keywordList = []
-	workPerfDict = {}
+        workPerfData = csv.reader(j, dialect='excel', delimiter=',', quotechar='"')
+        next(workPerfData, None)
+        idChecklist = []
+        keywordList = []
+        workPerfDict = {}
 
-	for row in workPerfData:
-		workPerfFolderID = row[0]
-		eventFolderID = row[1]
-		workPerfEntities = row[2]
-		if workPerfEntities:
-			workPerfKeywords = workPerfEntities.split('|')
+        for row in workPerfData:
+                workPerfFolderID = row[0]
+                eventFolderID = row[1]
+                workPerfEntities = row[2]
 
-			if eventFolderID not in idChecklist:
-				idChecklist.append(eventFolderID)
-				keywordList = []
-				for keyword in workPerfKeywords:
-					if keyword:
-						keywordList.append(keyword)
+                if workPerfEntities:
+                        workPerfKeywords = workPerfEntities.split('|')
 
-				workPerfDict[str(eventFolderID)] = keywordList
-			else:
-				for keyword in workPerfKeywords:
-					if keyword:
-						if keyword not in keywordList:
-							keywordList.append(keyword)
-							workPerfDict[str(eventFolderID)] = keywordList
+                        if eventFolderID not in idChecklist:
+                                idChecklist.append(eventFolderID)
+                                keywordList = []
 
-	for key in workPerfDict:
-		keywords = workPerfDict[key]
-		s = '|'
-		keywordString = s.join(keywords)
-		workPerfDict[key] = keywordString
+                                for keyword in workPerfKeywords:
+                                        if keyword:
+                                                keywordList.append(keyword)
 
-	for key in assetDict:
-		assetKeywords = assetDict[key]['Keywords']
-		try:
-			workPerfKeywords = workPerfDict[key]
-			keywordString = f'{assetKeywords}{workPerfKeywords}'
-			assetDict[key]['Keywords'] = keywordString
-		except KeyError:
-			pass
+                                workPerfDict[str(eventFolderID)] = keywordList
+                        else:
+                                keywordList = workPerfDict[str(eventFolderID)]
+
+                                for keyword in workPerfKeywords:
+                                        if keyword:
+                                                if keyword not in keywordList:
+                                                        keywordList.append(keyword)
+                                                        workPerfDict[str(eventFolderID)] = keywordList
+
+        for key in workPerfDict:
+                keywords = workPerfDict[key]
+                s = '|'
+                keywordString = s.join(keywords)
+                workPerfDict[key] = keywordString
+
+        for key in assetDict:
+                assetKeywords = assetDict[key]['Keywords']
+
+                try:
+                        workPerfKeywords = workPerfDict[key]
+                        keywordString = f'{assetKeywords}{workPerfKeywords}'
+                        assetDict[key]['Keywords'] = keywordString
+                except KeyError:
+                        pass
 
 outputPath = ''.join([str(filePath4), '/assetKeywords.csv'])
 
 fields = ['Asset ID', 'Keywords']
 with open(outputPath, 'w', newline='') as csvfile:
-	w = csv.DictWriter(csvfile, fields)
-	w.writeheader()
-	for k in assetDict:
-		w.writerow({field: assetDict[k].get(field) for field in fields})
+        w = csv.DictWriter(csvfile, fields)
+        w.writeheader()
+        for k in assetDict:
+                w.writerow({field: assetDict[k].get(field) for field in fields})
 
 print('Done assembling asset keywords')
