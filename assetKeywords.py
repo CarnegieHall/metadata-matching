@@ -70,25 +70,24 @@ with open(filePath3, newline = '', encoding='utf-8') as j:
 					if keyword:
 						keywordList.append(keyword)
 
-				workPerfDict[str(eventFolderID)] = {}
-				workPerfDict[str(eventFolderID)]['Keywords'] = keywordList
+				workPerfDict[str(eventFolderID)] = keywordList
 			else:
 				for keyword in workPerfKeywords:
 					if keyword:
 						if keyword not in keywordList:
 							keywordList.append(keyword)
-							workPerfDict[str(eventFolderID)]['Keywords'] = keywordList
+							workPerfDict[str(eventFolderID)] = keywordList
 
 	for key in workPerfDict:
-		keywords = workPerfDict[key]['Keywords']
+		keywords = workPerfDict[key]
 		s = '|'
 		keywordString = s.join(keywords)
-		workPerfDict[key]['Keywords'] = keywordString
+		workPerfDict[key] = keywordString
 
 	for key in assetDict:
 		assetKeywords = assetDict[key]['Keywords']
 		try:
-			workPerfKeywords = workPerfDict[key]['Keywords']
+			workPerfKeywords = workPerfDict[key]
 			keywordString = f'{assetKeywords}{workPerfKeywords}'
 			assetDict[key]['Keywords'] = keywordString
 		except KeyError:
