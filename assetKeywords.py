@@ -18,18 +18,24 @@ filePath3 = str(sys.argv[3])
 filePath4 = str(sys.argv[4])
 
 assetDict = {}
+dupeDict = {}
 
 with open(filePath1, newline = '', encoding='utf-8') as f:
 	assetData = csv.reader(f, dialect='excel', delimiter=',', quotechar='"')
 	next(assetData, None) #skip headers
+	idChecklist = []
 	for row in assetData:
-		assetID = row[0]
-		eventFolderID = row[1]
+                assetID = row[0]
+                eventFolderID = row[1]
 
-		assetDict[str(eventFolderID)] = {}
-		assetDict[str(eventFolderID)]['Asset ID'] = assetID
-		assetDict[str(eventFolderID)]['Keywords'] = ''
+                assetDict[str(eventFolderID)] = {}
+                assetDict[str(eventFolderID)]['Asset ID'] = assetID
+                assetDict[str(eventFolderID)]['Keywords'] = ''
 
+                if eventFolderID not in idChecklist:
+                        idChecklist.append(eventFolderID)
+                else:
+                        print(eventFolderID, '\t', assetID)
 
 with open(filePath2, newline = '', encoding='utf-8') as h:
 	eventData = csv.reader(h, dialect='excel', delimiter=',', quotechar='"')
